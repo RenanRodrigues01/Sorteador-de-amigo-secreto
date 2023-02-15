@@ -1,4 +1,5 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { click } from "@testing-library/user-event/dist/click";
 import React from "react";
 import Form from "./Form";
 
@@ -14,4 +15,25 @@ test('quando o input está vazio, novos participantes não podem ser adicionados
     expect(input).toBeInTheDocument()
     //garantir que o input está desabilitado
     expect(button).toBeDisabled()
+})
+
+test("Adicionar um participante, caso exista um nome preenchido", () => {
+
+    render(<Form />)
+    
+    const input = screen.getByPlaceholderText('Insira os nomes dos participantes')
+    const button = screen.getByRole('button')
+
+    //inserir um valor no input
+    fireEvent.change( input, {
+        target: {
+            value: 'josé'
+        }
+    })
+    //submeter o formulario
+    fireEvent.click(button)
+    // apos a submição espero que o input tenha o foco
+    expect(input).toHaveFocus()
+    //espero que o input esteja vazio
+    expect(input).toHaveValue("")
 })
