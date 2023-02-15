@@ -1,12 +1,15 @@
 import { useRef, useState } from "react"
+import { useAdicionaParticipante } from "../state/hooks/useAdicionaParticipante";
 
 const Form = () => {
 
   const [nome, setNome] = useState('');
-  const inputRef = useRef<HTMLInputElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null);
+  const adicionalNaLista = useAdicionaParticipante();
 
   const adicionarParticipante = (evento: React.FormEvent<HTMLFormElement>) => {
     evento.preventDefault();
+    adicionalNaLista(nome)
     setNome('');
     inputRef.current?.focus()
   }
