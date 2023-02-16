@@ -15,9 +15,9 @@ test('quando o input está vazio, novos participantes não podem ser adicionados
     //encontar o botão
     const button = screen.getByRole('button');
     //garantir que o input está no documento
-    expect(input).toBeInTheDocument()
+    expect(input).toBeInTheDocument();
     //garantir que o input está desabilitado
-    expect(button).toBeDisabled()
+    expect(button).toBeDisabled();
 })
 
 test("Adicionar um participante, caso exista um nome preenchido", () => {
@@ -26,23 +26,23 @@ test("Adicionar um participante, caso exista um nome preenchido", () => {
         <RecoilRoot>
             <Form />
         </RecoilRoot>
-    )
+    );
     
-    const input = screen.getByPlaceholderText('Insira os nomes dos participantes')
-    const button = screen.getByRole('button')
+    const input = screen.getByPlaceholderText('Insira os nomes dos participantes');
+    const button = screen.getByRole('button');
 
     //inserir um valor no input
     fireEvent.change( input, {
         target: {
             value: 'josé'
         }
-    })
+    });
     //submeter o formulario
-    fireEvent.click(button)
+    fireEvent.click(button);
     // apos a submição espero que o input tenha o foco
-    expect(input).toHaveFocus()
+    expect(input).toHaveFocus();
     //espero que o input esteja vazio
-    expect(input).toHaveValue("")
+    expect(input).toHaveValue("");
 })
 
 test('Nomes duplicados não podem ser adicionados na lista', () => {
@@ -51,10 +51,10 @@ test('Nomes duplicados não podem ser adicionados na lista', () => {
         <RecoilRoot>
             <Form />
         </RecoilRoot>
-    )
+    );
     
-    const input = screen.getByPlaceholderText('Insira os nomes dos participantes')
-    const button = screen.getByRole('button')
+    const input = screen.getByPlaceholderText('Insira os nomes dos participantes');
+    const button = screen.getByRole('button');
 
     //inserir um valor no input
     fireEvent.change( input, {
@@ -62,17 +62,55 @@ test('Nomes duplicados não podem ser adicionados na lista', () => {
             value: 'josé'
         }
     })
-    fireEvent.click(button)
+    fireEvent.click(button);
 
     //inserindo o mesmo valor na lista
     fireEvent.change( input, {
         target: {
             value: 'josé'
         }
-    })
-    fireEvent.click(button)
+    });
+    fireEvent.click(button);
 
-    const msgDeErro = screen.getByRole('alert')
+    const msgDeErro = screen.getByRole('alert');
 
-    expect(msgDeErro.textContent).toBe('nomes iguais não podem ser adicionados')
+    expect(msgDeErro.textContent).toBe('nomes iguais não podem ser adicionados');
+})
+
+test('O alerta deve desaparecer após N segundos', () => {
+    jest.useFakeTimers();
+
+    render(
+        <RecoilRoot>
+            <Form />
+        </RecoilRoot>
+    );
+    
+    const input = screen.getByPlaceholderText('Insira os nomes dos participantes');
+    const button = screen.getByRole('button');
+
+    //inserir um valor no input
+    fireEvent.change( input, {
+        target: {
+            value: 'josé'
+        }
+    });
+    fireEvent.click(button);
+
+    //inserindo o mesmo valor na lista
+    fireEvent.change( input, {
+        target: {
+            value: 'josé'
+        }
+    });
+    fireEvent.click(button);
+    //ao tentar adicionar dois nomes repetidos o erro aparece na tela
+    let msgDeErro = screen.queryByRole('alert');
+    expect(msgDeErro).toBeInTheDocument();
+
+    jest.runAllTimers();
+
+    //após as contagens de timers a mensagem não pode mais estar no documento
+    msgDeErro = screen.queryByRole('alert');
+    expect(msgDeErro).toBe(null);
 })
