@@ -4,7 +4,11 @@ import Form from "./Form";
 
 test('quando o input está vazio, novos participantes não podem ser adicionados', ()=>{
     //renderizar o componente no qual quremos fazer o teste
-    render(<Form />);
+    render(
+        <RecoilRoot>
+            <Form />
+        </RecoilRoot>
+    );
 
     //encontar no DOM o imput
     const input = screen.getByPlaceholderText('Insira os nomes dos participantes');
@@ -39,4 +43,36 @@ test("Adicionar um participante, caso exista um nome preenchido", () => {
     expect(input).toHaveFocus()
     //espero que o input esteja vazio
     expect(input).toHaveValue("")
+})
+
+test('Nomes duplicados não podem ser adicionados na lista', () => {
+
+    render(
+        <RecoilRoot>
+            <Form />
+        </RecoilRoot>
+    )
+    
+    const input = screen.getByPlaceholderText('Insira os nomes dos participantes')
+    const button = screen.getByRole('button')
+
+    //inserir um valor no input
+    fireEvent.change( input, {
+        target: {
+            value: 'josé'
+        }
+    })
+    fireEvent.click(button)
+
+    //inserindo o mesmo valor na lista
+    fireEvent.change( input, {
+        target: {
+            value: 'josé'
+        }
+    })
+    fireEvent.click(button)
+
+    const msgDeErro = screen.getByRole('alert')
+
+    expect(msgDeErro.textContent).toBe('nomes iguais não podem ser adicionados')
 })
