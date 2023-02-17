@@ -60,5 +60,6 @@ describe('quando existem participantes suficientes', () => {
         fireEvent.click(button);
 
         expect(mockNavegação).toHaveBeenCalledTimes(1)
+        expect(mockNavegação).toHaveBeenCalledWith('/sorteio')
     } )
 })

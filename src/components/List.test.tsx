@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import React from "react";
 import { RecoilRoot } from "recoil";
 import { useListaDeParticipantes } from "../state/hooks/useListaDeParticipantes";
@@ -42,7 +42,10 @@ describe('uma lista de participantes preenchida', () => {
         );
 
         const itens = screen.queryAllByRole('listitem');
-
-        expect(itens).toHaveLength(participantes.length)
+        
+        act(() => {
+            expect(itens).toHaveLength(participantes.length)
+        })
+        
     })
 })

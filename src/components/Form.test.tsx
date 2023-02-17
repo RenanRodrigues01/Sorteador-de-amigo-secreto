@@ -98,13 +98,16 @@ describe('Comportamento do Form.tsx', () => {
             }
         });
         fireEvent.click(button);
-    
-        //inserindo o mesmo valor na lista
-        fireEvent.change( input, {
-            target: {
-                value: 'josé'
-            }
-        });
+        
+        act(() => {
+            //inserindo o mesmo valor na lista
+            fireEvent.change( input, {
+                target: {
+                    value: 'josé'
+                }
+            });
+        })
+        
         fireEvent.click(button);
         //ao tentar adicionar dois nomes repetidos o erro aparece na tela
         let msgDeErro = screen.queryByRole('alert');

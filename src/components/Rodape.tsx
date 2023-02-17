@@ -6,7 +6,7 @@ const Rodape = () => {
     const navigate = useNavigate()
 
     const iniciar = () => {
-        navigate('/sorteioS')
+        navigate('/sorteio')
     }
     return (
         <footer>
