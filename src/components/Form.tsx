@@ -11,9 +11,9 @@ const Form = () => {
 
   const adicionarParticipante = (evento: React.FormEvent<HTMLFormElement>) => {
     evento.preventDefault();
-    adicionalNaLista(nome)
+    adicionalNaLista(nome);
     setNome('');
-    inputRef.current?.focus()
+    inputRef.current?.focus();
   }
 
   return (
