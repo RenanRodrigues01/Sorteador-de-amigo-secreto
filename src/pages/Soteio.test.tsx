@@ -1,4 +1,5 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { click } from "@testing-library/user-event/dist/click";
 import React from "react";
 import { RecoilRoot } from "recoil";
 import { useListaDeParticipantes } from "../state/hooks/useListaDeParticipantes";
@@ -23,5 +24,26 @@ describe('Na pagina de Sorteio', () => {
 
         const opcoes = screen.queryAllByRole('option');
         expect(opcoes).toHaveLength(participantes.length)
+    })
+
+    test('O amigo secreto é exibido quando solicitado', () => {
+        render(
+            <RecoilRoot>
+                <Sorteio />
+            </RecoilRoot>
+        );
+
+        const select = screen.getByPlaceholderText('selecione o seu nome')
+        fireEvent.change(select, () => {
+            target: {
+                value: participantes[0]
+            }
+        })
+
+        const button = screen.getByRole('button')
+        fireEvent.click(button)
+
+        const amigoSecreto = screen.getByRole('alert')
+        expect(amigoSecreto).toBeInTheDocument()
     })
 })
