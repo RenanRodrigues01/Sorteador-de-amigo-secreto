@@ -11,7 +11,7 @@ const Sorteio = () => {
 
   const resultado = useResultadoSorteio();
 
-  const sortear = (evento: React.FormEvent<HTMLSelectElement>) => {
+  const sortear = (evento: React.FormEvent<HTMLFormElement>) => {
     evento.preventDefault();
     if(resultado.has(participanteDaVez)) {
       setAmigoSecreto(resultado.get(participanteDaVez)!)
@@ -19,8 +19,8 @@ const Sorteio = () => {
   }
   return (
     <section>
-      <form>
-        <select onSubmit={sortear}
+      <form onSubmit={sortear}>
+        <select 
           name="participanteDaVez" 
           id="participanteDaVez"
           placeholder="selecione o seu nome"
@@ -32,7 +32,7 @@ const Sorteio = () => {
 
         <button>Sortear</button>
       </form>
-      {amigoSecreto && <p role='alert'>{amigoSecreto}</p>}
+      {amigoSecreto && <p role="alert">{amigoSecreto}</p>}
     </section> 
   )
 }

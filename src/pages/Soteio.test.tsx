@@ -1,8 +1,8 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { click } from "@testing-library/user-event/dist/click";
 import React from "react";
 import { RecoilRoot } from "recoil";
 import { useListaDeParticipantes } from "../state/hooks/useListaDeParticipantes";
+import { useResultadoSorteio } from "../state/hooks/useResultadoSorteio";
 import Sorteio from "./Sorteio";
 
 jest.mock('../state/hooks/useListaDeParticipantes', () => {
@@ -10,10 +10,23 @@ jest.mock('../state/hooks/useListaDeParticipantes', () => {
         useListaDeParticipantes: jest.fn()
     }
 })
+
+jest.mock('../state/hooks/useResultadoSorteio', () => {
+    return {
+        useResultadoSorteio: jest.fn()
+    }
+})
 describe('Na pagina de Sorteio', () => {
+
     const participantes = ['clara', 'eliana', 'josue'];
+    const resultado = new Map([
+        ['clara', 'eliana'],
+        ['eliana', 'josue'],
+        ['josue', 'clara']
+    ])
     beforeEach(() => {
-        (useListaDeParticipantes as jest.Mock).mockReturnValue(participantes)
+        (useListaDeParticipantes as jest.Mock).mockReturnValue(participantes);
+        (useResultadoSorteio as jest.Mock).mockReturnValue(resultado)
     })
     test('todos os participantes podem exibir seu amigo secreto', () => {
         render(
