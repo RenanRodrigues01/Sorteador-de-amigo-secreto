@@ -1,3 +1,4 @@
+import { sorteador } from "./sorteador"
 
 describe('Dado um sorteio de amigo secreto', () => {
     test('Cada participante não pode sortear ele mesmo', () => {
@@ -18,3 +19,4 @@ describe('Dado um sorteio de amigo secreto', () => {
         })
     })
 })
+export {}
