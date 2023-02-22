@@ -1,6 +1,6 @@
-import Form from "../components/Form"
-import List from "../components/List"
-import Rodape from "../components/Rodape"
+import Form from "../components/form/Form"
+import List from "../components/list/List"
+import Rodape from "../components/footer/Rodape"
 
 const Home = () => {
   return (

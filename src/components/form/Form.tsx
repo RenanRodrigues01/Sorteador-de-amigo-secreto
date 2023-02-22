@@ -1,6 +1,6 @@
 import { useRef, useState } from "react"
-import { useAdicionaParticipante } from "../state/hooks/useAdicionaParticipante";
-import { usemsgDeErro } from "../state/hooks/useMsgDeErro";
+import { useAdicionaParticipante } from "../../state/hooks/useAdicionaParticipante";
+import { usemsgDeErro } from "../../state/hooks/useMsgDeErro";
 
 const Form = () => {
 
