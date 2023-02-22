@@ -1,13 +1,13 @@
 import { useRef, useState } from "react"
 import { useAdicionaParticipante } from "../../state/hooks/useAdicionaParticipante";
-import { usemsgDeErro } from "../../state/hooks/useMsgDeErro";
+import { useMsgDeErro } from "../../state/hooks/useMsgDeErro";
 
 const Form = () => {
 
   const [nome, setNome] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
   const adicionalNaLista = useAdicionaParticipante();
-  const msgDeErro = usemsgDeErro()
+  const msgDeErro = useMsgDeErro()
 
   const adicionarParticipante = (evento: React.FormEvent<HTMLFormElement>) => {
     evento.preventDefault();
