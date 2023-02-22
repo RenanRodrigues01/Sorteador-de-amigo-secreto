@@ -2,7 +2,7 @@ import { useRef, useState } from "react"
 import { useAdicionaParticipante } from "../../state/hooks/useAdicionaParticipante";
 import { useMsgDeErro } from "../../state/hooks/useMsgDeErro";
 
-import 'Form.css'
+import './Form.css'
 
 const Form = () => {
 

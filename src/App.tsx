@@ -10,8 +10,8 @@ function App() {
       <BrowserRouter>
         <RecoilRoot>
           <Routes>
-            <Route path='/' element={Home} />
-            <Route path='/sorteio' element={Sorteio}/>
+            <Route path='/' element={<Home />} />
+            <Route path='/sorteio' element={<Sorteio />}/>
           </Routes>
         </RecoilRoot>
       </BrowserRouter>
