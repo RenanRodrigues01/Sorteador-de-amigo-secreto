@@ -18,15 +18,17 @@ const Form = () => {
 
   return (
     <form onSubmit={adicionarParticipante}>
+      <div className="grupo-input-btn">
         <input 
-          ref={inputRef}
-          value={nome}
-          onChange={e => setNome(e.target.value)}
-          type="text" 
-          placeholder="Insira os nomes dos participantes" 
-        />
-        <button disabled={!nome}>Adicionar</button>
-        {msgDeErro && <p role='alert'>{msgDeErro}</p>}
+            ref={inputRef}
+            value={nome}
+            onChange={e => setNome(e.target.value)}
+            type="text" 
+            placeholder="Insira os nomes dos participantes" 
+          />
+          <button disabled={!nome}>Adicionar</button>
+      </div>
+      {msgDeErro && <p className="alerta erro" role='alert'>{msgDeErro}</p>}
     </form>
   )
 }
