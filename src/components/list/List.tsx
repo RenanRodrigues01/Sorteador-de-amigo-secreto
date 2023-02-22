@@ -1,8 +1,8 @@
-import React from 'react'
-import { useListaDeParticipantes } from '../../state/hooks/useListaDeParticipantes'
+import React from 'react';
+import { useListaDeParticipantes } from '../../state/hooks/useListaDeParticipantes';
 
 const List = () => {
-    const participantes: string[] = useListaDeParticipantes()
+  const participantes: string[] = useListaDeParticipantes();
 
   return (
     <ul>
