@@ -33,6 +33,7 @@ const Sorteio = () => {
             value={participanteDaVez}
             onChange={e => setPartipanteDaVez( e.target.value)}
           >
+            <option>Selecione seu nome</option>
             {participantes.map( participante => <option key={participante}>{participante}</option>)}
           </select>
           <p>Clique em em sortear para ver quem é seu amigo secreto!</p>
