@@ -5,7 +5,7 @@ import { useListaDeParticipantes } from "../../state/hooks/useListaDeParticipant
 import { useSorteador } from "../../state/hooks/useSorteador";
 import Rodape from "./Rodape";
 
-jest.mock('../state/hooks/useListaDeParticipantes', () => {
+jest.mock('../../state/hooks/useListaDeParticipantes', () => {
     return {
         useListaDeParticipantes: jest.fn()
     }
@@ -20,7 +20,7 @@ jest.mock('react-router-dom', () => {
 
 const mockSorteio = jest.fn();
 
-jest.mock('../state/hooks/useSorteador', () => {
+jest.mock('../../state/hooks/useSorteador', () => {
     return {
         useSorteador: () => mockSorteio
     }

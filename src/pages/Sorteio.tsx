@@ -29,7 +29,7 @@ const Sorteio = () => {
           <select 
             name="participanteDaVez" 
             id="participanteDaVez"
-            placeholder="selecione o seu nome"
+            placeholder="Selecione o seu nome"
             value={participanteDaVez}
             onChange={e => setPartipanteDaVez( e.target.value)}
           >
@@ -40,7 +40,7 @@ const Sorteio = () => {
           <button className="botao-sortear">Sortear</button>
         </form>
 
-        {amigoSecreto && <p className="resultado" role="alert">{amigoSecreto}</p>}
+        {amigoSecreto && <p className="resultado" role='alert' >{amigoSecreto}</p>}
 
         <footer className="sorteio">
           <img src="/img/aviao.png" className="aviao" alt="Um desenho de um avião de papel" />
